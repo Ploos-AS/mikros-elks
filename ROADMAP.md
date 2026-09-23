@@ -1,0 +1,30 @@
+# MikrOS ELKS Roadmap
+
+## M0 — Distribution baseline
+
+- [x] Define MikrOS ELKS scope and design principles.
+- [x] Select PC/XT-class 8088/8086 as the primary minimum-platform reference.
+- [ ] Pin and document the ELKS upstream baseline.
+- [ ] Establish a reproducible modern-host cross-build.
+- [ ] Define the minimal base userspace.
+- [ ] Establish emulator reference machines.
+- [ ] Measure minimum and recommended RAM.
+- [ ] Define floppy/disk image layouts.
+- [ ] Define automated boot/qualification tests.
+- [ ] Produce the first reproducible MikrOS ELKS base image.
+
+### M0 exit criteria
+
+A clean modern build host can reproducibly build a documented MikrOS ELKS image and an automated reference emulator can boot it to a usable shell on the PC/XT-class target.
+
+## M1 — Useful base system
+
+Console, shell, filesystem utilities, editor, system configuration and robust disk-image generation.
+
+## M2 — Communications
+
+Serial tooling and networking profiles using capabilities available in ELKS and target hardware.
+
+## M3 — Distribution packaging
+
+Define a tiny package/install model suitable for 16-bit resource constraints. Runtime simplicity takes priority over sharing a package manager with MikrOS Linux.
