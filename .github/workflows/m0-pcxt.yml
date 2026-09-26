@@ -24,6 +24,12 @@ jobs:
           sh ./qualification/check-storage-matrix.sh
           sh ./qualification/check-m0-userspace.sh
 
+      - name: Validate shell scripts
+        run: |
+          for script in scripts/*.sh qualification/*.sh; do
+            sh -n "$script"
+          done
+
       - name: Fetch pinned ELKS
         run: sh ./scripts/fetch-elks.sh
 
