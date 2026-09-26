@@ -60,6 +60,27 @@ claimed. The default/recommended M0 baseline is the lowest size that passes
 **USEFUL**, not merely **BOOT**. No value is promoted to supported status until
 the result has been captured on the 8088/8086 qualification gate.
 
+## Storage qualification
+
+M0 uses the 1.44 MB floppy image as the public CI reference because it gives the
+baseline userspace room to build and boot without conflating image-size tuning
+with basic system qualification.
+
+The historical floppy targets are qualified independently at 360 KiB, 720 KiB,
+1.2 MiB and 1.44 MiB. Each format records three outcomes:
+
+- **BUILD** — a reproducible image of the expected format is produced;
+- **BOOT** — that image reaches an observable console on a compatible machine;
+- **USEFUL** — it contains enough of the M0 base system to satisfy the documented
+  shell/filesystem/process smoke contract.
+
+A smaller floppy may be supported as a boot or rescue profile without being the
+default MikrOS ELKS base image. Image capacity alone is never treated as proof
+that the base userspace fits.
+
+Hard-disk qualification follows after the floppy baseline and is tracked
+separately so M0 remains useful on floppy-only PC/XT-class machines.
+
 ## General qualification requirements
 
 A supported reference target must build reproducibly from a modern host, boot in an automatable emulator, reach a working console and shell, execute basic filesystem/process commands, support the documented image layout, record conventional-memory use and image size, and pass architecture-appropriate smoke tests.
