@@ -22,6 +22,7 @@ jobs:
         run: |
           sh ./qualification/check-ram-matrix.sh
           sh ./qualification/check-storage-matrix.sh
+          sh ./qualification/check-m0-userspace.sh
 
       - name: Fetch pinned ELKS
         run: sh ./scripts/fetch-elks.sh
@@ -31,6 +32,9 @@ jobs:
           set -o pipefail
           mkdir -p out/pcxt
           sh ./scripts/build-pcxt.sh 2>&1 | tee out/pcxt/build.log
+
+      - name: Verify M0 base userspace
+        run: sh ./scripts/check-built-userspace.sh out/pcxt/target
 
       - name: Boot-test PC/XT image
         run: sh ./scripts/qemu-smoke-pcxt.sh out/pcxt
