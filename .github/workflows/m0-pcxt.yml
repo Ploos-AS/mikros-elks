@@ -1,4 +1,4 @@
-name: M0 PC-XT build
+name: M0 PC-XT qualification
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  pcxt-build:
+  pcxt-m0:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -16,17 +16,21 @@ jobs:
       - name: Install ELKS host dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential git texinfo libncurses5-dev libelf-dev ncompress bison flex nasm
+          sudo apt-get install -y build-essential git texinfo libncurses5-dev libelf-dev ncompress bison flex nasm qemu-system-x86
 
       - name: Fetch pinned ELKS
         run: sh ./scripts/fetch-elks.sh
 
       - name: Build PC/XT baseline
         run: |
+          set -o pipefail
           mkdir -p out/pcxt
           sh ./scripts/build-pcxt.sh 2>&1 | tee out/pcxt/build.log
 
-      - name: Upload M0 build artifacts
+      - name: Boot-test PC/XT image
+        run: sh ./scripts/qemu-smoke-pcxt.sh out/pcxt
+
+      - name: Upload M0 qualification artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -35,4 +39,5 @@ jobs:
             out/pcxt/image/
             out/pcxt/SHA256SUMS
             out/pcxt/build.log
+            out/pcxt/qemu-smoke.log
           if-no-files-found: warn
