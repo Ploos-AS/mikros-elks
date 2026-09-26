@@ -8,7 +8,7 @@ on:
 
 jobs:
   pcxt-m0:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -26,6 +26,20 @@ jobs:
 
       - name: Fetch pinned ELKS
         run: sh ./scripts/fetch-elks.sh
+
+      - name: Cache ELKS cross toolchain
+        id: cross-cache
+        uses: actions/cache@v4
+        with:
+          path: sources/elks/cross
+          key: elks-v0.9.1-cross-${{ runner.os }}
+
+      - name: Build ELKS cross toolchain
+        if: steps.cross-cache.outputs.cache-hit != 'true'
+        run: |
+          cd sources/elks
+          mkdir -p cross
+          tools/build.sh
 
       - name: Build PC/XT baseline
         run: |
