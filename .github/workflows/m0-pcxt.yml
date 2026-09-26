@@ -18,6 +18,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential git texinfo libncurses5-dev libelf-dev ncompress bison flex nasm qemu-system-x86
 
+      - name: Validate qualification records
+        run: sh ./qualification/check-ram-matrix.sh
+
       - name: Fetch pinned ELKS
         run: sh ./scripts/fetch-elks.sh
 
