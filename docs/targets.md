@@ -41,6 +41,25 @@ A minimum-CPU PASS requires:
 
 Until this gate passes, the target status remains **PC/XT boot-qualified / 8088-8086 CPU unqualified**.
 
+
+## RAM qualification
+
+RAM qualification is measured on the authoritative 8088/8086 gate, not inferred
+from upstream documentation. Test, in descending order, 640, 512, 384 and 256
+KiB of conventional RAM.
+
+Each size has three independent outcomes:
+
+- **BOOT** — kernel reaches an observable console;
+- **SHELL** — an interactive shell starts successfully;
+- **USEFUL** — the shell can execute the M0 command set, including at least
+  filesystem inspection, process inspection and a fork/exec command.
+
+The MikrOS minimum RAM claim is the lowest size that passes the criterion being
+claimed. The default/recommended M0 baseline is the lowest size that passes
+**USEFUL**, not merely **BOOT**. No value is promoted to supported status until
+the result has been captured on the 8088/8086 qualification gate.
+
 ## General qualification requirements
 
 A supported reference target must build reproducibly from a modern host, boot in an automatable emulator, reach a working console and shell, execute basic filesystem/process commands, support the documented image layout, record conventional-memory use and image size, and pass architecture-appropriate smoke tests.
