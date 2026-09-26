@@ -13,7 +13,7 @@ test "$(git -C "$ELKS" describe --tags --exact-match)" = "$ELKS_VERSION"
 mkdir -p "$OUT"
 (
     cd "$ELKS"
-    ./build.sh
+    ./build.sh auto
 )
 
 rm -rf "$OUT/target" "$OUT/image"
