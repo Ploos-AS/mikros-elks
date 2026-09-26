@@ -21,10 +21,13 @@ mkdir -p "$OUT"
 
     # Build only the IBM PC baseline. Upstream build.sh auto continues with
     # 8018X/V25/PC-98 and would leave target/ representing the final variant.
-    . ./env.sh
-    cp ibmpc-1440-nc.config .config
-    make clean
-    make -j1 all
+    bash -c '
+        set -eu
+        . ./env.sh
+        cp ibmpc-1440-nc.config .config
+        make clean
+        make -j1 all
+    '
 )
 
 rm -rf "$OUT/target" "$OUT/image"
