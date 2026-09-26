@@ -1,0 +1,9 @@
+capability	command	required	notes
+shell	/bin/sh	YES	Interactive shell and script execution
+read	/bin/cat	YES	Read a regular file
+list	/bin/ls	YES	List a directory
+create-dir	/bin/mkdir	YES	Create a directory
+remove	/bin/rm	YES	Remove a regular file
+process-list	/bin/ps	YES	Inspect running processes
+memory-info	/bin/meminfo	YES	Record guest memory state
+fork-exec	/bin/echo	YES	Execute an external child command from the shell
