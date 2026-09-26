@@ -27,4 +27,4 @@ Serial tooling and networking profiles using capabilities available in ELKS and 
 
 ## M3 — Distribution packaging
 
-Define a tiny package/install model suitable for 16-bit resource constraints. Runtime simplicity takes priority over sharing a package manager with MikrOS Linux.
+Implement the shared MikrOS package/repository model for ELKS resource constraints. MPK metadata, repository semantics and host-side tooling should be shared where practical; the on-target installer/runtime implementation may be ELKS-specific and must remain small.
