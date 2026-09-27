@@ -24,8 +24,8 @@ mkdir -p "$OUT"
     bash -c '
         set -e
         . ./env.sh
+        make defconfig
         cp ibmpc-1440-nc.config .config
-        make clean
         make -j1 all
     '
 )
