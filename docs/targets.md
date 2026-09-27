@@ -19,7 +19,7 @@ M0 deliberately separates fast public CI from minimum-CPU qualification.
 
 ### QEMU CI gate
 
-QEMU with the ISA PC machine is the mandatory build/boot smoke gate. It verifies that the pinned ELKS source builds, produces the expected floppy image, boots through the PC-compatible ISA path and emits an observable ELKS console transcript.
+QEMU with the ISA PC machine is the mandatory build/boot smoke gate. CI run #30 passed this gate: the pinned ELKS source built, the IBM PC floppy image was produced, an interactive shell was reached, and the complete M0 userspace contract passed. This records the QEMU BUILD/BOOT/SHELL/USEFUL baseline as **PASS**.
 
 QEMU is **not** evidence that the minimum 8088/8086 CPU baseline has passed: the ELKS QEMU reference path uses a later x86 CPU model.
 
@@ -39,7 +39,7 @@ A minimum-CPU PASS requires:
 6. captured qualification metadata and logs;
 7. measured guest RAM and image size.
 
-Until this gate passes, the target status remains **PC/XT boot-qualified / 8088-8086 CPU unqualified**.
+The QEMU and minimum-CPU gates are independent. Current status is **QEMU BUILD/BOOT/SHELL/USEFUL: PASS** and **8088/8086 minimum-CPU gate: UNTESTED**. A QEMU PASS must never be promoted to an 8088/8086 CPU PASS.
 
 
 ## RAM qualification
