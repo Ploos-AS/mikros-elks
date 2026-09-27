@@ -5,12 +5,12 @@
 - [x] Define MikrOS ELKS scope and design principles.
 - [x] Select PC/XT-class 8088/8086 as the primary minimum-platform reference.
 - [x] Pin and document the ELKS upstream baseline (v0.9.1).
-- [ ] Establish a reproducible modern-host cross-build.
-- [ ] Define the minimal base userspace.
-- [ ] Establish emulator reference machines.
+- [x] Establish a reproducible modern-host cross-build.
+- [x] Define the minimal base userspace.
+- [x] Establish emulator reference machines.
 - [ ] Measure minimum and recommended RAM.
 - [ ] Define floppy/disk image layouts.
-- [ ] Define automated boot/qualification tests.
+- [x] Define automated boot/qualification tests.
 - [ ] Produce the first reproducible MikrOS ELKS base image.
 
 ### M0 exit criteria
